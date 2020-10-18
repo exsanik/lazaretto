@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  skip_forgery_protection
+
   def render_resource(resource)
     if resource.errors.empty?
       render json: resource

@@ -9,6 +9,10 @@ module Api
         resource.save
         render_resource(resource)
       end
+
+      def sign_up_params
+        params.require(:user).permit(:last_name, :first_name, :type, :password, :password_confirmation, :mobile)
+      end
     end
   end
 end
