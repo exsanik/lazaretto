@@ -5,7 +5,7 @@ module Api
 
       def index
         doctors = Doctor.all
-        render json: doctors
+        render json: DoctorSerializer.new(doctors).serializable_hash
       end
     end
   end

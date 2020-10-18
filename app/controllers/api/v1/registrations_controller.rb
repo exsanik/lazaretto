@@ -7,8 +7,11 @@ module Api
         build_resource(sign_up_params)
 
         resource.save
-        render_resource(resource)
+        serialized = UserSerializer.new(resource).serializable_hash
+        render_resource(serialized)
       end
+
+      private
 
       def sign_up_params
         params.require(:user).permit(:last_name, :first_name, :type, :password, :password_confirmation, :mobile)

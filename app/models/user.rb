@@ -11,6 +11,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: self
 
+  self.inheritance_column = nil
+
   def email_required?
     false
   end
