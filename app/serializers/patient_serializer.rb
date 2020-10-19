@@ -1,3 +1,6 @@
 class PatientSerializer < UserSerializer
-  attributes :status
+  attributes :role
+
+  has_many :doctors
+  has_many :patient_doctors
 end

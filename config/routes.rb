@@ -15,7 +15,15 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :doctors, only: [:index]
+      resources :doctors
+
+      resources :patients
+      resources :patients, only: [] do
+        resource :doctors, only: %i[show], module: :patients
+      end
+
+      resources :categories, only: [:index]
+      resources :patient_doctor, only: %i[create update]
       get '/auth', to: 'auth#index'
     end
   end
