@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       end
 
       resources :categories, only: [:index]
-      resources :patient_doctor, only: %i[create update]
+      resources :patient_doctor, only: %i[create update, destroy]
       get '/auth', to: 'auth#index'
     end
   end

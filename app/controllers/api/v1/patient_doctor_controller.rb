@@ -23,6 +23,16 @@ module Api
         end
       end
 
+      def destroy
+        patient_doctor = PatientDoctor.find(params[:id])
+
+        if patient_doctor.destroy
+          head :no_content
+        else
+          render json: patient_doctor.errors, status: 400
+        end
+      end
+
       private
 
       def patient_doctor_params

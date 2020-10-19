@@ -25,6 +25,10 @@ class User < ApplicationRecord
     end.serializable_hash
   end
 
+  def role
+    User.name
+  end
+
   def email_changed?
     false
   end

@@ -11,7 +11,7 @@ module Api
         if resource.errors.present?
           render json: { errors: resource.errors }, status: 422
         else
-          render json: resource.serializable_hash
+          render json: resource.serializable
         end
       end
 
