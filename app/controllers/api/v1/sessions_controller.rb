@@ -3,10 +3,16 @@ module Api
     class SessionsController < Devise::SessionsController
       respond_to :json
 
+      def create
+        resource = warden.authenticate!(auth_options)
+        sign_in(resource_name, resource)
+        respond_with resource
+      end
+
       private
 
       def respond_with(resource, _opts = {})
-        render json: UserSerializer.new(resource).serializable_hash
+        render json: resource.serializable
       end
 
       def respond_to_on_destroy

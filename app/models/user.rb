@@ -11,10 +11,18 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: self
 
-  self.inheritance_column = nil
+  # self.inheritance_column = :_type_disabled
 
   def email_required?
     false
+  end
+
+  def serializable
+    case type
+    when 'Doctor' then DoctorSerializer.new(self)
+    when 'Patient' then PatientSerializer.new(self)
+    else UserSerializer.new(self)
+    end.serializable_hash
   end
 
   def email_changed?

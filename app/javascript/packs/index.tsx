@@ -1,18 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
+import AppContextProvider from './context'
 
-type Props = {
-  name: string
-}
-
-const Hello: React.FC<Props> = ({ name = "David" }) => (
-  <div>Hello qwe {name}!</div>
-)
+import App from './App'
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Hello name="React" />,
-    document.body.appendChild(document.createElement('div')),
+    <React.StrictMode>
+      <BrowserRouter>
+        <AppContextProvider>
+          <App />
+        </AppContextProvider>
+      </BrowserRouter>
+    </React.StrictMode>,
+    document.body.appendChild(document.createElement('div'))
   )
 })
-

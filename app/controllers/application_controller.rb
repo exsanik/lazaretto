@@ -1,11 +1,9 @@
 class ApplicationController < ActionController::Base
   skip_forgery_protection
 
-  def render_resource(resource)
-    if resource.errors.empty?
-      render json: resource
-    else
-      render json: { errors: resource.errors }, status: 422
-    end
+  def auth_user
+    User.inheritance_column = :_type_disabled
+    authenticate_user!
+    User.inheritance_column = :type
   end
 end

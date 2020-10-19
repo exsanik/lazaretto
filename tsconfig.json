@@ -6,6 +6,8 @@
     "allowSyntheticDefaultImports": true,
     "lib": ["es6", "dom"],
     "module": "es6",
+    "baseUrl": "app/javascript/packs",
+  
     "moduleResolution": "node",
     "sourceMap": true,
     "target": "es5",

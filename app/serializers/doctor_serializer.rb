@@ -1,3 +1,3 @@
 class DoctorSerializer < UserSerializer
-  attributes :category_id
+  attributes :category_id, :status
 end

@@ -314,6 +314,9 @@ Devise.setup do |config|
 
   config.jwt do |jwt|
     jwt.secret = Rails.application.credentials[:jwt_secret_key]
+    # jwt.request_formats = {
+    #   user: %i[nil json]
+    # }
     jwt.dispatch_requests = [
       ['POST', %r{^/login$}]
     ]
@@ -321,5 +324,9 @@ Devise.setup do |config|
       ['DELETE', %r{^/logout$}]
     ]
     jwt.expiration_time = 24.hours.to_i
+  end
+
+  config.warden do |manager|
+    manager.failure_app = Api::V1::CustomFailureApp
   end
 end
